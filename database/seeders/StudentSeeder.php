@@ -14,15 +14,8 @@ class StudentSeeder extends Seeder
     public function run()
     {
         User::factory()->create([
-            'email'=> 'student1@stulib.com',
-            'password'=> bcrypt('password'),
-        ]);
-        User::factory()->create([
-            'email'=> 'student2@stulib.com',
-            'password'=> bcrypt('password'),
-        ]);
-        User::factory()->create([
-            'email'=> 'student3@stulib.com',
+            'name' => $this->faker->name(),
+            'email'=> $this->faker->email(),
             'password'=> bcrypt('password'),
         ]);
     }

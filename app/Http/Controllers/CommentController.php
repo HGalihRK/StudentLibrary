@@ -14,4 +14,10 @@ class CommentController extends Controller
             'project_id' => $request->project_id,
         ]);    
         return back();
-}}
+}
+
+public function delete($id){
+Comment::find($id)->delete();
+return back();
+}
+}

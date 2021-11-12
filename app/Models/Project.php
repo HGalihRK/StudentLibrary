@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','description','thumbnail','file','user_id'];
+    protected $fillable = ['name','description','thumbnail','file','user_id','hide'];
     public function user()
     {
         return $this->belongsTo(User::class);

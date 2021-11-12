@@ -50,6 +50,19 @@
           @endforeach
             <!-- More files... -->
           </ul>
-          <div class="text-center"><x-jet-button class="text-base rounded-full text-center mx-auto">Lihat Selengkapnya</x-jet-button></div> 
-</x-slot> 
+          <div class="text-center"><a href="{{route('games')}}"><x-jet-button class="text-base rounded-full text-center mx-auto">Lihat Selengkapnya</x-jet-button></a></div> 
+          <div class="mx-auto text-center text-3xl md:mt-32 lg:text-center">Buat Karya</div>
+          <div class="mx-auto text-center mt-2 text-3xl w-36 mb-16 rounded-full h-2 bg-blue-600"></div>
+         <div class="grid grid-cols-2 gap-2">
+           <div class="col-span-2 md:col-span-1">
+            <img no-referrer="none" class="" loading="lazy" src="https://construct-static.com/images/v951/home/new/hero2.png" width="1280" height="800">
+           </div>
+           <div class="col-span-2 md:col-span-1">
+            <video autoplay="" loop="" muted="" playsinline="" style="width: 100%;">
+              <source src="https://construct-static.com/videos/v951/construct3/city.mp4" type="video/mp4">
+              </video>
+           </div>
+          </div>
+          <div class="text-center mt-5"><a href="https://www.construct.net/en"><x-jet-button class="text-base rounded-full text-center mx-auto">Pergi ke Construct 3 Sekarang</x-jet-button></a></div> 
+        </x-slot> 
 </x-main>

@@ -17,13 +17,13 @@
       {{$project->name}}
     </h3>
     <p class="mt-1 max-w-2xl text-sm text-gray-500">
-      {{$project->user->name}} / {{date('d M Y',strtotime($project->created_at))}}
+      <a href="{{route('showmine',$project->user->id)}}"><span class="text-blue-600"> {{$project->user->name}}</span></a> / {{date('d M Y',strtotime($project->created_at))}}
     </p>
   </div>
   <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
     <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-      <div id="iframecontainer" class="sm:col-span-2">
-        <iframe src="{{asset('projects')}}/{{$project->id}}/index.html" title="W3Schools Free Online Web Tutorials" class="w-full h-96 fullscreen"></iframe>
+      <div id="iframecontainer" class="sm:col-span-2 ring-2 ring-blue-200">
+        <iframe id="iFrame1"  src="{{asset('projects')}}/{{$project->id}}/index.html" title="W3Schools Free Online Web Tutorials" class="w-full h-96 fullscreen"></iframe>
       </div>
       <div class="sm:col-span-1" id="container">
         <x-jet-button class="button">Fullscreen</x-jet-button>
@@ -37,6 +37,12 @@
         <x-jet-button type="submit" class="">Like</x-jet-button>
         @endif
         </form>
+        @auth
+        @if($project->user->id == Auth::user()->id )
+        <a href="{{route('delete',$project->id)}}"> <x-jet-button type="submit" class="">Delete</x-jet-button></a>
+        <a href="{{route('editproject',$project->id)}}"> <x-jet-button type="submit" class="">Edit</x-jet-button></a>
+        @endif
+        @endauth
       </div>
       <div class="sm:col-span-1" id="container">
         <div class="text-lg md:text-right leading-6 font-medium text-blue-600">
@@ -69,14 +75,16 @@
 <div class="bg-white shadow sm:rounded-md mb-2">
   <ul role="list" class="divide-y divide-gray-200">
     <li>
-      <a href="#" class="block hover:bg-gray-50">
+      
         <div class="px-4 py-4 flex items-center sm:px-6">
           <div class="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
             <div class=" break-words">
+              <a href="{{route('showmine',$comment->user->id)}}" class="block hover:bg-gray-50">
               <div class="flex text-sm">
                 <p class="font-medium text-indigo-600 truncate">{{$comment->user->name}}</p>
          
               </div>
+              </a>
               <div class="mt-2 flex break-all">
                 <div class="flex items-center text-sm break-all text-gray-500">
                   <!-- Heroicon name: solid/calendar -->
@@ -86,7 +94,13 @@
               </div>
             </div>
             <div class="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
-          
+              @if($comment->user->id == Auth::User()->id)
+              <a href="{{route('deletecom',$comment->id)}}">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-200 hover:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              </a>
+              @endif
             </div>
           </div>
           <div class="ml-5 flex-shrink-0">
@@ -94,7 +108,7 @@
             
           </div>
         </div>
-      </a>
+     
     </li>
 
   </ul>
@@ -193,4 +207,5 @@ function fullscreenChange() {
   iframe.src = iframe.src;
 }
     </script>
+
 </x-app-layout>
